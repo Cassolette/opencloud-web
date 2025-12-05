@@ -240,13 +240,17 @@ def main(ctx):
     if ctx.build.event == "cron" and ctx.build.sender == "translation-sync":
         return translation_sync(ctx)
 
+    is_release_pr = (ctx.build.event == "pull_request" and ctx.build.event == "openclouders" and "🎉 release" in ctx.build.title.lower())
+    if is_release_pr:
+        before = []
+        stages = []
+        return licenseCheck()
+    else:
+        before = beforePipelines(ctx)
+        stages = pipelinesDependsOn(stagePipelines(ctx), before)
+
     release = readyReleaseGo()
-
-    before = beforePipelines(ctx)
-
-    stages = pipelinesDependsOn(stagePipelines(ctx), before)
-
-    if not stages:
+    if not stages and not is_release_pr:
         print("Errors detected. Review messages above.")
         return []
 
