@@ -3,7 +3,7 @@
 // c.f. https://github.com/vitejs/vite/issues/5370
 
 import { mergeConfig, searchForWorkspaceRoot } from 'vite'
-import { join } from 'path'
+import { join } from 'path/posix'
 import { cwd } from 'process'
 import { readFileSync, existsSync } from 'fs'
 import tailwindcss from '@tailwindcss/vite'
