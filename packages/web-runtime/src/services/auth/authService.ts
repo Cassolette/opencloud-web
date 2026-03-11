@@ -140,14 +140,38 @@ export class AuthService implements AuthServiceInterface {
       const fetchUserData = !isIdpContextRequired(this.router, to)
 
       if (!this.userManager.areEventHandlersRegistered) {
-        this.userManager.events.addAccessTokenExpired((): void => {
+        this.userManager.events.addAccessTokenExpired(async () => {
           const handleExpirationError = () => {
             console.error('AccessToken Expired')
             this.handleAuthError(unref(this.router.currentRoute), { forceSignin: true })
           }
 
-          // retry silent signin once, force logout if it fails
-          this.userManager.signinSilent().catch(handleExpirationError)
+          const waitForNetwork = (timeout: number): Promise<void> => {
+            if (navigator.onLine) return Promise.resolve()
+
+            return new Promise((resolve, reject) => {
+              const timer = setTimeout(() => {
+                console.debug('Timed out waiting for network')
+                window.removeEventListener('online', handleOnline)
+                reject()
+              }, timeout)
+              const handleOnline = () => {
+                console.debug('Network is back online')
+                clearTimeout(timer)
+                resolve()
+              }
+              window.addEventListener('online', handleOnline, { once: true })
+            })
+          }
+
+          // wait a short while for the network to come online before attempting a silent signin.
+          // if the wait times out or silent signin fails, we execute the error fallback.
+          try {
+            await waitForNetwork(3000)
+            await this.userManager.signinSilent()
+          } catch (e) {
+            handleExpirationError()
+          }
         })
 
         this.userManager.events.addAccessTokenExpiring(() => {
