@@ -12,7 +12,7 @@
     </div>
     <div
       id="web-content-main"
-      class="flex flex-col items-start justify-start grow shrink basis-auto px-2 pb-2 overflow-y-hidden"
+      class="flex flex-col items-start justify-start grow shrink basis-auto overflow-y-hidden px-0.5 pb-0.5 sm:px-1 sm:pb-1 md:px-2 md:pb-2"
     >
       <div
         class="app-container flex bg-role-surface-container rounded-xl size-full overflow-hidden"
