@@ -5,12 +5,12 @@
   >
     <div class="flex flex-col grow">
       <nav class="oc-sidebar-nav mt-3 px-1" :aria-label="$gettext('Sidebar navigation menu')">
-        <div v-if="floatingActionButton && !isTablet" class="pb-3 px-2">
+        <div v-if="floatingActionButton && !isTablet" class="pb-3 px-2 flex justify-end">
           <oc-button
             :id="getButtonId(floatingActionButton.id)"
             :disabled="isFloatingActionButtonDisabled"
             appearance="filled"
-            class="oc-app-floating-action-button w-full"
+            class="oc-app-floating-action-button min-h-10 max-w-full px-4 rounded-xl shadow-md"
             @click="floatingActionButton.handler?.()"
           >
             <oc-icon :name="floatingActionButton.icon" />
