@@ -10,7 +10,7 @@
             :id="getButtonId(floatingActionButton.id)"
             :disabled="isFloatingActionButtonDisabled"
             appearance="filled"
-            class="oc-app-floating-action-button min-h-10 max-w-3/5 px-3 rounded-xl shadow-md"
+            class="oc-app-floating-action-button min-h-10 max-w-3/5 px-3 rounded-xl"
             @click="floatingActionButton.handler?.()"
           >
             <oc-icon :name="floatingActionButton.icon" />
