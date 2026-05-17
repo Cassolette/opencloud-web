@@ -14,7 +14,7 @@
             @click="floatingActionButton.handler?.()"
           >
             <oc-icon :name="floatingActionButton.icon" />
-            <span class="truncate" v-text="floatingActionButton.label()" />
+            <span class="break-all font-semibold" v-text="floatingActionButton.label()" />
           </oc-button>
           <template
             v-if="floatingActionButton.dropComponent && floatingActionButton.mode() === 'drop'"
