@@ -19,7 +19,7 @@
     </template>
     <oc-button
       :id="buttonId"
-      class="rounded-full size-14"
+      class="rounded-full size-14 shadow-md/20"
       appearance="filled"
       :color-role="colorRole"
       :aria-label="computedAriaLabel"
