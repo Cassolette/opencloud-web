@@ -25,10 +25,10 @@
       @update:model-value="updateTerm"
       @clear="onClear"
       @click="showPreview"
-      @keyup.esc="onClear"
       @keyup.up="onKeyUpUp"
       @keyup.down="onKeyUpDown"
       @keyup.enter="onKeyUpEnter"
+      @keydown.esc="onClear"
       @keydown.tab="hideOptionsDrop"
     >
       <template #locationFilter>
