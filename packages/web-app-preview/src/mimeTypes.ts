@@ -15,5 +15,10 @@ export const mimeTypes = [
   'image/x-ms-bmp',
   'video/mp4',
   'video/quicktime',
-  'video/webm'
+  'video/webm',
+  // EDIT: addon patch
+  'image/jxl',
+  'image/heic',
+  'image/heif',
+  'image/avif'
 ]

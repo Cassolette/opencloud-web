@@ -10,15 +10,15 @@
             :id="getButtonId(floatingActionButton.id)"
             :disabled="isFloatingActionButtonDisabled"
             appearance="filled"
-            :color-role="currentTheme.isDark ? 'primaryContainer' : 'primary'"
-            class="oc-app-floating-action-button w-full !bg-gradient-to-r !from-role-secondary !to-role-primary shadow-md transition-[filter,box-shadow] duration-150 ease-out hover:brightness-110 shadow-md"
-            :class="{
-              '!from-role-secondary-container !to-role-primary-container': currentTheme.isDark
-            }"
+            :color-role="!currentTheme.isDark ? 'primary' : undefined"
+            class="oc-app-floating-action-button min-h-11 max-w-[70%] px-4"
             @click="floatingActionButton.handler?.()"
           >
             <oc-icon :name="floatingActionButton.icon" />
-            <span v-text="floatingActionButton.label()" />
+            <span
+              class="wrap-break-word line-clamp-2 font-semibold"
+              v-text="floatingActionButton.label()"
+            />
           </oc-button>
           <template
             v-if="floatingActionButton.dropComponent && floatingActionButton.mode() === 'drop'"
